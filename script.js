@@ -90,57 +90,86 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
   }
 })();
 
-/* Showcase rows: details appear only while the cursor is over a row. */
+/* Showcase hover: match the reference interaction — the row stays dark, and a large detail panel appears underneath the title only while hovered. */
 (() => {
   const style = document.createElement('style');
   style.textContent = `
     .showcase-rows .showcase-row{
       position:relative;
       min-height:130px;
+      height:130px;
       overflow:hidden;
-      transition:background .35s ease,color .35s ease,transform .35s ease,padding .35s ease;
+      background:transparent;
+      color:#f1f1f1;
+      border-color:rgba(255,255,255,.12);
+      padding-left:0;
+      padding-right:0;
+      transition:height .42s cubic-bezier(.22,1,.36,1),background .3s ease,color .3s ease,padding .3s ease;
     }
     .showcase-rows .showcase-row small,
     .showcase-rows .showcase-row i{
-      opacity:0;
-      visibility:hidden;
-      transform:translateX(18px);
-      transition:opacity .25s ease,visibility .25s ease,transform .35s ease,color .35s ease;
+      opacity:0!important;
+      visibility:hidden!important;
+      transform:none!important;
+      pointer-events:none;
     }
     .showcase-rows .showcase-row strong{
-      transition:color .35s ease,transform .35s ease;
+      position:relative;
+      z-index:2;
+      color:#f1f1f1;
+      transition:color .3s ease,transform .35s ease;
     }
+    .showcase-rows .showcase-row::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      height:0;
+      display:flex;
+      align-items:center;
+      padding:0 18px;
+      box-sizing:border-box;
+      background:#ead07e;
+      color:#080808;
+      font:500 28px/1.2 var(--mono);
+      letter-spacing:.03em;
+      opacity:0;
+      transition:height .42s cubic-bezier(.22,1,.36,1),opacity .2s ease;
+      white-space:nowrap;
+    }
+    .showcase-rows .showcase-row:nth-child(1)::after{content:"Models  ·  RAG  ·  GenAI"}
+    .showcase-rows .showcase-row:nth-child(2)::after{content:"Java  ·  Python  ·  APIs"}
+    .showcase-rows .showcase-row:nth-child(3)::after{content:"React  ·  Node  ·  Web"}
+    .showcase-rows .showcase-row:nth-child(4)::after{content:"SQL  ·  Pandas  ·  NumPy"}
     .showcase-rows .showcase-row:hover,
     .showcase-rows .showcase-row:focus-visible{
-      background:#3da9ff;
-      color:#050505;
-      border-color:#3da9ff;
-      padding-left:18px;
-      padding-right:18px;
-    }
-    .showcase-rows .showcase-row:hover strong,
-    .showcase-rows .showcase-row:focus-visible strong,
-    .showcase-rows .showcase-row:hover small,
-    .showcase-rows .showcase-row:focus-visible small,
-    .showcase-rows .showcase-row:hover i,
-    .showcase-rows .showcase-row:focus-visible i{
-      color:#050505;
-    }
-    .showcase-rows .showcase-row:hover small,
-    .showcase-rows .showcase-row:focus-visible small,
-    .showcase-rows .showcase-row:hover i,
-    .showcase-rows .showcase-row:focus-visible i{
-      opacity:1;
-      visibility:visible;
-      transform:translateX(0);
+      height:285px;
+      min-height:285px;
+      background:transparent;
+      color:#f1f1f1;
+      padding-left:0;
+      padding-right:0;
     }
     .showcase-rows .showcase-row:hover strong,
     .showcase-rows .showcase-row:focus-visible strong{
+      color:#f1f1f1;
       transform:translateX(4px);
     }
+    .showcase-rows .showcase-row:hover::after,
+    .showcase-rows .showcase-row:focus-visible::after{
+      height:154px;
+      opacity:1;
+    }
+    @media(max-width:900px){
+      .showcase-rows .showcase-row::after{font-size:20px}
+    }
     @media(max-width:650px){
-      .showcase-rows .showcase-row{min-height:105px}
-      .showcase-rows .showcase-row small{font-size:9px}
+      .showcase-rows .showcase-row{height:105px;min-height:105px}
+      .showcase-rows .showcase-row:hover,
+      .showcase-rows .showcase-row:focus-visible{height:235px;min-height:235px}
+      .showcase-rows .showcase-row:hover::after,
+      .showcase-rows .showcase-row:focus-visible::after{height:120px;font-size:16px;white-space:normal}
     }
   `;
   document.head.appendChild(style);
