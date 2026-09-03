@@ -139,5 +139,72 @@
 
   <footer class="shell"><span>© 2026 Baratam Sriram</span><span>Chennai, India · Open to Work</span><span>Built with precision.</span></footer>
   <script src="script.js"></script>
+  <script>
+    /* Final showcase polish: the descriptor REPLACES the big label in-place on hover. */
+    (() => {
+      const style = document.createElement('style');
+      style.textContent = `
+        .showcase-rows .showcase-row{
+          background:transparent!important;
+          color:#f4f5f7!important;
+        }
+        .showcase-rows .showcase-row::after{
+          background:#3da9ff!important;
+          transform:scaleX(0)!important;
+          transform-origin:left center!important;
+          transition:transform .42s cubic-bezier(.22,1,.36,1)!important;
+          z-index:1!important;
+        }
+        .showcase-rows .showcase-row:hover::after,
+        .showcase-rows .showcase-row:focus-visible::after{transform:scaleX(1)!important}
+        .showcase-rows .showcase-row strong{
+          transition:opacity .18s ease,transform .38s cubic-bezier(.22,1,.36,1),color .18s ease!important;
+          z-index:4!important;
+        }
+        .showcase-rows .showcase-row small{
+          position:absolute!important;
+          left:110px!important;
+          right:auto!important;
+          top:50%!important;
+          transform:translateY(-50%) translateX(-18px)!important;
+          width:auto!important;
+          margin:0!important;
+          text-align:left!important;
+          flex:none!important;
+          color:#050505!important;
+          font:600 clamp(22px,2.1vw,34px)/1 var(--mono)!important;
+          letter-spacing:-.035em!important;
+          white-space:nowrap!important;
+          opacity:0!important;
+          z-index:5!important;
+          transition:opacity .2s ease,transform .38s cubic-bezier(.22,1,.36,1)!important;
+        }
+        .showcase-rows .showcase-row:hover strong,
+        .showcase-rows .showcase-row:focus-visible strong{
+          opacity:0!important;
+          transform:translateX(18px)!important;
+        }
+        .showcase-rows .showcase-row:hover small,
+        .showcase-rows .showcase-row:focus-visible small{
+          opacity:1!important;
+          transform:translateY(-50%) translateX(0)!important;
+          color:#050505!important;
+        }
+        .showcase-rows .showcase-row-number,
+        .showcase-rows .showcase-row i{transition:color .2s ease,transform .3s ease!important;z-index:6!important}
+        .showcase-rows .showcase-row:hover .showcase-row-number,
+        .showcase-rows .showcase-row:hover i,
+        .showcase-rows .showcase-row:focus-visible .showcase-row-number,
+        .showcase-rows .showcase-row:focus-visible i{color:#050505!important}
+        @media(max-width:900px){
+          .showcase-rows .showcase-row small{left:72px!important;font-size:clamp(18px,2.8vw,28px)!important}
+        }
+        @media(max-width:650px){
+          .showcase-rows .showcase-row small{left:48px!important;font-size:17px!important;white-space:normal!important}
+        }
+      `;
+      document.head.appendChild(style);
+    })();
+  </script>
 </body>
 </html>
