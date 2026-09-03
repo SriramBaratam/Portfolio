@@ -9,4 +9,4 @@ Personal portfolio website for Baratam Sriram, a Computer Science student focuse
 - Vercel-ready static deployment
 
 ## Deployment
-Import this GitHub repository into Vercel and deploy with the default settings.
+Import this repository into Vercel with the default settings. No build command is required.
