@@ -85,87 +85,24 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     .nav-links a:hover{color:#fff!important;transform:translateY(-1px)!important}
     .header-cta{display:none!important}
     .hero{padding-top:145px!important;min-height:100vh!important}
-    @media(max-width:900px){.site-header{top:14px!important;width:calc(100% - 28px)!important;height:62px!important;padding:0 12px!important}.brand{min-width:auto!important}.brand .nav-avatar{width:36px!important;height:36px!important}.nav-links{display:none!important}.site-header::after{content:"BS. / MENU";font:500 10px var(--mono);color:#777;letter-spacing:.12em}.hero{padding-top:110px!important}}
+    .hero-terminal{position:relative!important}
+    .hero-photo{position:absolute!important;right:2%!important;top:4%!important;width:142px!important;height:142px!important;padding:5px!important;border:1px solid rgba(61,169,255,.5)!important;border-radius:18px!important;background:#070b10!important;box-shadow:0 0 50px rgba(61,169,255,.16)!important;z-index:20!important;transform:rotate(2deg)!important;transition:transform .35s ease,box-shadow .35s ease!important}
+    .hero-photo img{width:100%!important;height:100%!important;object-fit:cover!important;border-radius:13px!important;display:block!important}
+    .hero-terminal:hover .hero-photo{transform:rotate(0) translateY(-5px)!important;box-shadow:0 0 70px rgba(61,169,255,.24)!important}
+    @media(max-width:900px){.site-header{top:14px!important;width:calc(100% - 28px)!important;height:62px!important;padding:0 12px!important}.brand{min-width:auto!important}.brand .nav-avatar{width:36px!important;height:36px!important}.nav-links{display:none!important}.site-header::after{content:"BS. / MENU";font:500 10px var(--mono);color:#777;letter-spacing:.12em}.hero{padding-top:110px!important}.hero-photo{width:105px!important;height:105px!important;right:3%!important;top:1%!important}}
+    @media(max-width:650px){.site-header{top:10px!important}.hero-photo{position:relative!important;right:auto!important;top:auto!important;margin:0 auto 18px!important;width:120px!important;height:120px!important;transform:none!important}.hero-terminal{min-height:430px!important}.hero-terminal:hover .hero-photo{transform:none!important}}
   `;
   document.head.appendChild(style);
   const brand = document.querySelector('.brand');
   if (brand) brand.innerHTML = '<span class="nav-avatar" aria-hidden="true"></span><span class="nav-name">Baratam Sriram</span>';
-})();
 
-/* ABOUT — interactive system dossier */
-(() => {
-  const about = document.querySelector('#about');
-  if (!about) return;
-  const style = document.createElement('style');
-  style.textContent = `
-    #about{position:relative!important;isolation:isolate!important;overflow:hidden!important;padding-top:150px!important;padding-bottom:170px!important;background:#050607!important}
-    #about::before{content:"";position:absolute;inset:0;z-index:-5;pointer-events:none;background:linear-gradient(rgba(61,169,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(61,169,255,.055) 1px,transparent 1px);background-size:72px 72px;mask-image:linear-gradient(to bottom,transparent 0%,#000 18%,#000 80%,transparent 100%);opacity:.32;transform:perspective(700px) rotateX(58deg) scale(1.35) translateY(18%);transform-origin:center bottom}
-    #about::after{content:"";position:absolute;z-index:-4;left:50%;top:8%;width:760px;height:760px;transform:translateX(-50%);border:1px solid rgba(61,169,255,.12);border-radius:50%;box-shadow:0 0 120px rgba(61,169,255,.045),inset 0 0 100px rgba(61,169,255,.025);pointer-events:none;animation:aboutSpin 24s linear infinite}
-    #about .section-kicker{position:relative;z-index:5;color:#3da9ff!important;letter-spacing:.16em!important}
-    #about .section-title-row{position:relative;min-height:360px;display:flex;align-items:flex-end!important;z-index:4}
-    #about .section-title-row::before{content:"AI / SYSTEMS / ENGINEERING";position:absolute;left:0;top:15px;color:rgba(255,255,255,.035);font:700 clamp(70px,11vw,170px)/.82 var(--display);letter-spacing:-.075em;white-space:nowrap;pointer-events:none;transform:translateX(-2%)}
-    #about .section-title-row::after{content:"SYS::BARATAM_SRIIRAM // ONLINE";position:absolute;right:0;top:35px;color:#313840;font:500 9px var(--mono);letter-spacing:.12em;writing-mode:vertical-rl;transform:rotate(180deg);pointer-events:none}
-    #about .section-title-row h2{position:relative;margin:0!important;font-size:clamp(72px,10vw,152px)!important;line-height:.79!important;letter-spacing:-.07em!important;max-width:1100px!important;text-wrap:balance!important;transition:transform .5s cubic-bezier(.22,1,.36,1),text-shadow .5s ease!important}
-    #about .section-title-row h2 em{display:inline-block!important;color:#3da9ff!important;font-style:normal!important;text-shadow:0 0 45px rgba(61,169,255,.08)!important;transition:transform .45s cubic-bezier(.22,1,.36,1),letter-spacing .45s ease!important}
-    #about.about-active .section-title-row h2{transform:translateX(5px)!important;text-shadow:0 0 70px rgba(61,169,255,.12)!important}
-    #about.about-active .section-title-row h2 em{transform:skewX(-5deg) translateX(10px)!important;letter-spacing:-.085em!important}
-    .about-hud{position:absolute;right:0;bottom:18px;width:290px;padding:15px 16px;border:1px solid rgba(61,169,255,.2);background:rgba(5,8,11,.72);backdrop-filter:blur(10px);box-shadow:0 0 50px rgba(61,169,255,.06);font:500 9px/1.8 var(--mono);color:#69727c;z-index:6}
-    .about-hud b{color:#3da9ff;font-weight:500}.about-hud .hud-line{display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);padding:3px 0}.about-hud .hud-line:last-child{border:0}.hud-live{display:inline-flex;align-items:center;gap:6px;color:#dce4ec}.hud-live i{width:6px;height:6px;border-radius:50%;background:#3da9ff;box-shadow:0 0 12px #3da9ff;animation:hudPulse 1.5s ease-in-out infinite}
-    .about-scan{position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,#3da9ff,transparent);box-shadow:0 0 18px rgba(61,169,255,.9);z-index:7;opacity:.7;animation:aboutScan 5s ease-in-out infinite;pointer-events:none}
-    .about-orbit{position:absolute;width:420px;height:420px;border:1px dashed rgba(61,169,255,.15);border-radius:50%;right:-130px;top:250px;z-index:-1;animation:aboutOrbit 18s linear infinite}
-    .about-orbit::before,.about-orbit::after{content:"";position:absolute;border-radius:50%;background:#3da9ff;box-shadow:0 0 18px #3da9ff}.about-orbit::before{width:5px;height:5px;left:12%;top:18%}.about-orbit::after{width:3px;height:3px;right:14%;bottom:16%}
-    #about .about-grid{position:relative;z-index:5;margin-top:60px!important;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr)!important;gap:100px!important}
-    #about .big-copy{font-size:clamp(28px,3vw,45px)!important;line-height:1.12!important;letter-spacing:-.045em!important;position:relative!important}
-    #about .big-copy::before{content:"01";position:absolute;left:-44px;top:6px;color:#3da9ff;font:500 9px var(--mono);letter-spacing:.1em}
-    #about .body-copy{position:relative!important;padding-top:8px!important}
-    #about .body-copy::before{content:"/ EXECUTION LOG";display:block;margin-bottom:22px;color:#3da9ff;font:500 9px var(--mono);letter-spacing:.15em}
-    #about .body-copy p{transition:transform .45s cubic-bezier(.22,1,.36,1),color .3s ease!important}
-    #about .body-copy p:hover{transform:translateX(8px)!important;color:#d9e0e7!important}
-    .about-word{display:inline-block;transition:transform .45s cubic-bezier(.22,1,.36,1),color .3s ease}.about-word:hover{transform:translateY(-7px) rotate(-1deg);color:#fff}
-    @keyframes aboutSpin{to{transform:translateX(-50%) rotate(360deg)}}
-    @keyframes aboutOrbit{to{transform:rotate(360deg)}}
-    @keyframes aboutScan{0%,100%{transform:translateY(0);opacity:0}15%{opacity:.7}50%{transform:translateY(520px);opacity:.35}85%{opacity:.7}}
-    @keyframes hudPulse{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
-    @media(max-width:900px){#about{padding-top:110px!important;padding-bottom:110px!important}#about .section-title-row{min-height:300px!important}#about .section-title-row h2{font-size:clamp(60px,11vw,100px)!important}.about-hud{position:relative;right:auto;bottom:auto;margin-top:28px;width:min(100%,320px)}#about .about-grid{gap:55px!important;grid-template-columns:1fr!important}.about-orbit{right:-220px;top:250px}}
-    @media(max-width:650px){#about::before{background-size:48px 48px}#about .section-title-row{min-height:270px!important}#about .section-title-row::before{font-size:74px;top:35px}#about .section-title-row::after{display:none}#about .section-title-row h2{font-size:54px!important;line-height:.86!important}.about-orbit{width:260px;height:260px;right:-150px}.about-hud{font-size:8px}#about .big-copy::before{display:none}}
-  `;
-  document.head.appendChild(style);
-
-  const scan = document.createElement('div'); scan.className = 'about-scan'; about.prepend(scan);
-  const orbit = document.createElement('div'); orbit.className = 'about-orbit'; about.appendChild(orbit);
-  const hud = document.createElement('div');
-  hud.className = 'about-hud';
-  hud.innerHTML = `<div class="hud-line"><span>PROCESS</span><b>BARATAM.SRIRAM</b></div><div class="hud-line"><span>MODE</span><span class="hud-live"><i></i>BUILDING</span></div><div class="hud-line"><span>FOCUS</span><b>AI · SOFTWARE · DATA</b></div><div class="hud-line"><span>STACK</span><b>PY / JAVA / JS</b></div><div class="hud-line"><span>UPTIME</span><b id="aboutUptime">00:00:00</b></div>`;
-  about.querySelector('.section-title-row')?.appendChild(hud);
-
-  const title = about.querySelector('.section-title-row h2');
-  if (title && !title.querySelector('.about-word')) {
-    title.innerHTML = title.innerHTML.replace('Engineer at heart,','<span class="about-word">Engineer</span> <span class="about-word">at</span> <span class="about-word">heart,</span>');
+  const terminal = document.querySelector('.hero-terminal');
+  if (terminal && !terminal.querySelector('.hero-photo')) {
+    const photo = document.createElement('div');
+    photo.className = 'hero-photo';
+    photo.innerHTML = '<img src="assets/profile.jpg" alt="Baratam Sriram">';
+    terminal.prepend(photo);
   }
-
-  const start = performance.now();
-  const tick = () => {
-    const sec = Math.floor((performance.now()-start)/1000);
-    const h = String(Math.floor(sec/3600)).padStart(2,'0');
-    const m = String(Math.floor((sec%3600)/60)).padStart(2,'0');
-    const s = String(sec%60).padStart(2,'0');
-    const el = document.getElementById('aboutUptime'); if (el) el.textContent = `${h}:${m}:${s}`;
-    requestAnimationFrame(tick);
-  }; tick();
-
-  about.addEventListener('pointermove', e => {
-    const r = about.getBoundingClientRect();
-    const x = (e.clientX-r.left)/r.width;
-    const y = (e.clientY-r.top)/r.height;
-    about.style.setProperty('--about-rx', `${(y-.5)*-3}deg`);
-    about.style.setProperty('--about-ry', `${(x-.5)*3}deg`);
-  });
-  about.addEventListener('pointerenter', () => about.classList.add('about-active'));
-  about.addEventListener('pointerleave', () => about.classList.remove('about-active'));
-
-  const cursorStyle = document.createElement('style');
-  cursorStyle.textContent = `#about .section-title-row h2{transform:perspective(900px) rotateX(var(--about-rx,0deg)) rotateY(var(--about-ry,0deg)) translateX(0)}#about.about-active .section-title-row h2{transform:perspective(900px) rotateX(var(--about-rx,0deg)) rotateY(var(--about-ry,0deg)) translateX(5px)}`;
-  document.head.appendChild(cursorStyle);
 })();
 
 /* Boot screen */
