@@ -50,3 +50,42 @@ document.querySelectorAll('.section,.metrics,.project-card,.stack-line,.journey-
 document.querySelectorAll('.cert-card').forEach(el=>observer.observe(el));
 
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'})));
+
+/* Sree-Aditya-inspired floating navigation + profile treatment */
+(() => {
+  const style = document.createElement('style');
+  style.textContent = `
+    .site-header{position:fixed;top:28px;left:50%;transform:translateX(-50%);width:min(1120px,calc(100% - 64px));height:74px;padding:0 18px;border:1px solid rgba(255,255,255,.16);border-radius:999px;background:rgba(12,12,13,.78);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 10px 40px rgba(0,0,0,.45),0 0 0 1px rgba(61,169,255,.04);z-index:100}
+    .site-header::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(90deg,rgba(61,169,255,.08),rgba(255,255,255,.2),rgba(61,169,255,.08));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+    .brand{display:flex;align-items:center;gap:12px;min-width:250px;font:600 17px var(--mono);letter-spacing:.03em;color:#e8e8e8}
+    .brand::before{content:"";width:42px;height:42px;border-radius:9px;background:linear-gradient(135deg,#0b1622,#123a5a);border:1px solid rgba(61,169,255,.35);box-shadow:0 0 24px rgba(61,169,255,.14)}
+    .brand span{display:none}
+    .nav-links{gap:36px;align-items:center}
+    .nav-links a{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#85858b;transition:color .25s,transform .25s}
+    .nav-links a:hover{color:#fff;transform:translateY(-1px)}
+    .header-cta{display:none}
+    .hero{padding-top:145px;min-height:100vh}
+    .hero-terminal{position:relative}
+    .hero-photo{position:absolute;right:2%;top:4%;width:142px;height:142px;padding:5px;border:1px solid rgba(61,169,255,.5);border-radius:18px;background:#070b10;box-shadow:0 0 50px rgba(61,169,255,.16);z-index:5;transform:rotate(2deg);transition:transform .35s ease,box-shadow .35s ease}
+    .hero-photo img{width:100%;height:100%;object-fit:cover;border-radius:13px;display:block;filter:saturate(.95) contrast(1.02)}
+    .hero-terminal:hover .hero-photo{transform:rotate(0) translateY(-5px);box-shadow:0 0 70px rgba(61,169,255,.24)}
+    @media(max-width:900px){.site-header{top:14px;width:calc(100% - 28px);height:62px;padding:0 12px}.brand{min-width:auto}.brand::before{width:36px;height:36px}.nav-links{display:none}.site-header::after{content:"BS. / MENU";font:500 10px var(--mono);color:#777;letter-spacing:.12em}.hero{padding-top:110px}.hero-photo{width:105px;height:105px;right:3%;top:1%}}
+    @media(max-width:650px){.site-header{top:10px}.hero-photo{position:relative;right:auto;top:auto;margin:0 auto 18px;width:120px;height:120px;transform:none}.hero-terminal{min-height:430px}.hero-terminal:hover .hero-photo{transform:none}.terminal-window{width:100%}}
+  `;
+  document.head.appendChild(style);
+
+  const brand = document.querySelector('.brand');
+  if (brand) {
+    brand.innerHTML = '<span class="nav-avatar"></span><span class="nav-name">Baratam Sriram</span>';
+    const avatar = brand.querySelector('.nav-avatar');
+    avatar.style.cssText = "display:block;width:42px;height:42px;border-radius:9px;background:url('assets/profile.jpg') center/cover no-repeat;border:1px solid rgba(61,169,255,.35);box-shadow:0 0 22px rgba(61,169,255,.16);flex:0 0 auto";
+  }
+
+  const terminal = document.querySelector('.hero-terminal');
+  if (terminal && !terminal.querySelector('.hero-photo')) {
+    const photo = document.createElement('div');
+    photo.className = 'hero-photo';
+    photo.innerHTML = '<img src="assets/profile.jpg" alt="Baratam Sriram">';
+    terminal.prepend(photo);
+  }
+})();
