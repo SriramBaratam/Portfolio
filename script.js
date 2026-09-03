@@ -90,7 +90,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
   }
 })();
 
-/* Showcase hover: match the reference interaction — the row stays dark, and a large detail panel appears underneath the title only while hovered. */
+/* Showcase hover: match the reference interaction — dark title row, yellow detail panel appears underneath only while hovered. */
 (() => {
   const style = document.createElement('style');
   style.textContent = `
@@ -99,25 +99,33 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
       min-height:130px;
       height:130px;
       overflow:hidden;
-      background:transparent;
-      color:#f1f1f1;
+      background:transparent!important;
+      color:#ead07e!important;
       border-color:rgba(255,255,255,.12);
-      padding-left:0;
-      padding-right:0;
-      transition:height .42s cubic-bezier(.22,1,.36,1),background .3s ease,color .3s ease,padding .3s ease;
+      padding-left:0!important;
+      padding-right:0!important;
+      transition:height .42s cubic-bezier(.22,1,.36,1),background .3s ease,color .3s ease;
     }
-    .showcase-rows .showcase-row small,
-    .showcase-rows .showcase-row i{
-      opacity:0!important;
-      visibility:hidden!important;
-      transform:none!important;
-      pointer-events:none;
+    .showcase-rows .showcase-row::before,
+    .showcase-rows .showcase-row:hover::before,
+    .showcase-rows .showcase-row:focus-visible::before{
+      transform:scaleY(0)!important;
+      background:transparent!important;
     }
     .showcase-rows .showcase-row strong{
       position:relative;
       z-index:2;
-      color:#f1f1f1;
-      transition:color .3s ease,transform .35s ease;
+      color:#ead07e!important;
+      transition:transform .35s ease,color .3s ease;
+    }
+    .showcase-rows .showcase-row-number{
+      color:#3da9ff!important;
+      position:relative;
+      z-index:2;
+    }
+    .showcase-rows .showcase-row small,
+    .showcase-rows .showcase-row i{
+      display:none!important;
     }
     .showcase-rows .showcase-row::after{
       content:"";
@@ -137,6 +145,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
       opacity:0;
       transition:height .42s cubic-bezier(.22,1,.36,1),opacity .2s ease;
       white-space:nowrap;
+      z-index:1;
     }
     .showcase-rows .showcase-row:nth-child(1)::after{content:"Models  ·  RAG  ·  GenAI"}
     .showcase-rows .showcase-row:nth-child(2)::after{content:"Java  ·  Python  ·  APIs"}
@@ -144,16 +153,14 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
     .showcase-rows .showcase-row:nth-child(4)::after{content:"SQL  ·  Pandas  ·  NumPy"}
     .showcase-rows .showcase-row:hover,
     .showcase-rows .showcase-row:focus-visible{
-      height:285px;
-      min-height:285px;
-      background:transparent;
-      color:#f1f1f1;
-      padding-left:0;
-      padding-right:0;
+      height:285px!important;
+      min-height:285px!important;
+      background:transparent!important;
+      color:#ead07e!important;
     }
     .showcase-rows .showcase-row:hover strong,
     .showcase-rows .showcase-row:focus-visible strong{
-      color:#f1f1f1;
+      color:#ead07e!important;
       transform:translateX(4px);
     }
     .showcase-rows .showcase-row:hover::after,
@@ -161,16 +168,23 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
       height:154px;
       opacity:1;
     }
-    @media(max-width:900px){
-      .showcase-rows .showcase-row::after{font-size:20px}
-    }
+    @media(max-width:900px){.showcase-rows .showcase-row::after{font-size:20px}}
     @media(max-width:650px){
       .showcase-rows .showcase-row{height:105px;min-height:105px}
-      .showcase-rows .showcase-row:hover,
-      .showcase-rows .showcase-row:focus-visible{height:235px;min-height:235px}
-      .showcase-rows .showcase-row:hover::after,
-      .showcase-rows .showcase-row:focus-visible::after{height:120px;font-size:16px;white-space:normal}
+      .showcase-rows .showcase-row:hover,.showcase-rows .showcase-row:focus-visible{height:235px!important;min-height:235px!important}
+      .showcase-rows .showcase-row:hover::after,.showcase-rows .showcase-row:focus-visible::after{height:120px;font-size:16px;white-space:normal}
     }
+  `;
+  document.head.appendChild(style);
+})();
+
+/* Final showcase override: exactly like the reference — NO blue hover fill. */
+(() => {
+  const style = document.createElement('style');
+  style.textContent = `
+    .showcase-rows .showcase-row::before{display:none!important;}
+    .showcase-rows .showcase-row:hover{background:transparent!important;}
+    .showcase-rows .showcase-row:hover::after{background:#ead07e!important;color:#080808!important;}
   `;
   document.head.appendChild(style);
 })();
