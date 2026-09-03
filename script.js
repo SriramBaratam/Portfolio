@@ -90,109 +90,58 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
   }
 })();
 
-/* Showcase hover treatment — reference-style expansion, using the portfolio's electric-blue theme. */
+/* Showcase interaction — the hover replaces the side micro-copy with a theme-blue information panel. */
 (() => {
   const style = document.createElement('style');
   style.textContent = `
+    .showcase-rows{display:block!important}
     .showcase-rows .showcase-row{
-      position:relative!important;
-      display:block!important;
-      box-sizing:border-box!important;
-      width:100%!important;
-      height:130px!important;
-      min-height:130px!important;
-      overflow:hidden!important;
-      padding:0!important;
-      margin:0!important;
-      border-top:1px solid rgba(255,255,255,.12)!important;
-      border-bottom:0!important;
-      background:transparent!important;
-      color:#f2f2f2!important;
-      transition:height .5s cubic-bezier(.22,1,.36,1)!important;
+      position:relative!important;display:flex!important;align-items:center!important;box-sizing:border-box!important;width:100%!important;height:148px!important;min-height:148px!important;overflow:hidden!important;padding:0 28px 0 0!important;margin:0!important;border-top:1px solid rgba(255,255,255,.12)!important;border-bottom:0!important;background:transparent!important;color:#f4f5f7!important;outline:none!important;isolation:isolate!important;transition:background .35s ease!important;
     }
     .showcase-rows .showcase-row:last-child{border-bottom:1px solid rgba(255,255,255,.12)!important}
     .showcase-rows .showcase-row::before{display:none!important;content:none!important}
-    .showcase-rows .showcase-row-number{
-      position:absolute!important;
-      left:0!important;
-      top:50%!important;
-      transform:translateY(-50%)!important;
-      z-index:5!important;
-      color:#3da9ff!important;
-      font:500 11px var(--mono)!important;
-    }
-    .showcase-rows .showcase-row strong{
-      position:absolute!important;
-      left:110px!important;
-      top:50%!important;
-      transform:translateY(-50%)!important;
-      z-index:5!important;
-      margin:0!important;
-      color:#f2f2f2!important;
-      font-family:var(--display)!important;
-      font-size:clamp(54px,5vw,82px)!important;
-      line-height:.95!important;
-      letter-spacing:-.055em!important;
-      transition:color .3s ease,transform .45s cubic-bezier(.22,1,.36,1)!important;
-    }
-    .showcase-rows .showcase-row small,
-    .showcase-rows .showcase-row i{display:none!important}
-    .showcase-rows .showcase-row::after{
-      content:"";
-      position:absolute!important;
-      left:0!important;
-      right:0!important;
-      bottom:0!important;
-      height:0!important;
-      padding:0 24px 0 110px!important;
-      box-sizing:border-box!important;
-      display:flex!important;
-      align-items:center!important;
-      background:#3da9ff!important;
-      color:#050505!important;
-      font:500 25px/1.2 var(--mono)!important;
-      letter-spacing:.02em!important;
-      white-space:nowrap!important;
-      opacity:0!important;
-      z-index:2!important;
-      transition:height .5s cubic-bezier(.22,1,.36,1),opacity .22s ease!important;
-    }
-    .showcase-rows .showcase-row:nth-child(1)::after{content:"Models  ·  RAG  ·  GenAI"}
-    .showcase-rows .showcase-row:nth-child(2)::after{content:"Java  ·  Python  ·  APIs"}
-    .showcase-rows .showcase-row:nth-child(3)::after{content:"React  ·  Node  ·  Web"}
-    .showcase-rows .showcase-row:nth-child(4)::after{content:"SQL  ·  Pandas  ·  NumPy"}
-    .showcase-rows .showcase-row:hover,
-    .showcase-rows .showcase-row:focus-visible{
-      height:284px!important;
-      min-height:284px!important;
-      background:transparent!important;
-      color:#f2f2f2!important;
-      outline:none!important;
-    }
-    .showcase-rows .showcase-row:hover strong,
-    .showcase-rows .showcase-row:focus-visible strong{
-      top:64px!important;
-      transform:none!important;
-      color:#f2f2f2!important;
-    }
-    .showcase-rows .showcase-row:hover::after,
-    .showcase-rows .showcase-row:focus-visible::after{
-      height:150px!important;
-      opacity:1!important;
-    }
-    @media(max-width:900px){
-      .showcase-rows .showcase-row strong{left:72px!important;font-size:clamp(44px,8vw,66px)!important}
-      .showcase-rows .showcase-row::after{padding-left:72px!important;font-size:19px!important}
-      .showcase-rows .showcase-row:hover strong,.showcase-rows .showcase-row:focus-visible strong{top:52px!important}
-    }
-    @media(max-width:650px){
-      .showcase-rows .showcase-row{height:105px!important;min-height:105px!important}
-      .showcase-rows .showcase-row strong{left:48px!important;font-size:43px!important}
-      .showcase-rows .showcase-row::after{padding:0 18px 0 48px!important;height:0!important;font-size:15px!important;white-space:normal!important}
-      .showcase-rows .showcase-row:hover,.showcase-rows .showcase-row:focus-visible{height:225px!important;min-height:225px!important}
-      .showcase-rows .showcase-row:hover strong,.showcase-rows .showcase-row:focus-visible strong{top:45px!important}
-      .showcase-rows .showcase-row:hover::after,.showcase-rows .showcase-row:focus-visible::after{height:115px!important}
-    }
+    .showcase-rows .showcase-row-number{position:relative!important;flex:0 0 110px!important;color:#3da9ff!important;font:500 11px var(--mono)!important;z-index:4!important}
+    .showcase-rows .showcase-row strong{position:relative!important;left:auto!important;top:auto!important;transform:none!important;flex:1!important;margin:0!important;color:#f4f5f7!important;font-family:var(--display)!important;font-size:clamp(54px,5vw,82px)!important;line-height:.95!important;letter-spacing:-.055em!important;z-index:4!important;transition:color .28s ease,transform .35s cubic-bezier(.22,1,.36,1)!important}
+    .showcase-rows .showcase-row small{display:block!important;flex:0 0 250px!important;text-align:right!important;color:#737983!important;font:500 12px var(--mono)!important;letter-spacing:.01em!important;z-index:4!important;transition:opacity .2s ease,transform .3s ease!important}
+    .showcase-rows .showcase-row i{display:block!important;flex:0 0 24px!important;margin-left:18px!important;text-align:right!important;color:#3da9ff!important;font:500 18px var(--mono)!important;font-style:normal!important;z-index:4!important;transition:transform .3s ease,color .25s ease!important}
+    .showcase-rows .showcase-row::after{content:""!important;position:absolute!important;inset:0!important;background:#3da9ff!important;transform:scaleX(0)!important;transform-origin:right center!important;z-index:1!important;transition:transform .45s cubic-bezier(.22,1,.36,1)!important}
+    .showcase-rows .showcase-row:hover::after,.showcase-rows .showcase-row:focus-visible::after{transform:scaleX(1)!important}
+    .showcase-rows .showcase-row:hover strong,.showcase-rows .showcase-row:focus-visible strong{color:#050505!important;transform:translateX(8px)!important}
+    .showcase-rows .showcase-row:hover small,.showcase-rows .showcase-row:focus-visible small{color:#050505!important;opacity:1!important}
+    .showcase-rows .showcase-row:hover i,.showcase-rows .showcase-row:focus-visible i{color:#050505!important;transform:translate(4px,-2px)!important}
+    .showcase-rows .showcase-row:hover .showcase-row-number,.showcase-rows .showcase-row:focus-visible .showcase-row-number{color:#050505!important}
+    @media(max-width:900px){.showcase-rows .showcase-row{height:126px!important;min-height:126px!important;padding-right:18px!important}.showcase-rows .showcase-row-number{flex-basis:72px!important}.showcase-rows .showcase-row strong{font-size:clamp(44px,8vw,66px)!important}.showcase-rows .showcase-row small{flex-basis:175px!important;font-size:10px!important}.showcase-rows .showcase-row i{flex-basis:18px!important;margin-left:8px!important}}
+    @media(max-width:650px){.showcase-rows .showcase-row{height:108px!important;min-height:108px!important;padding-right:8px!important}.showcase-rows .showcase-row-number{flex-basis:48px!important}.showcase-rows .showcase-row strong{font-size:42px!important}.showcase-rows .showcase-row small{display:none!important}.showcase-rows .showcase-row i{flex-basis:18px!important;margin-left:5px!important}}
   `;
   document.head.appendChild(style);
+})();
+
+/* Premium first-load screen — inspired by the supplied reference, but built for this portfolio's blue/black identity. */
+(() => {
+  const style = document.createElement('style');
+  style.textContent = `
+    #boot-screen{position:fixed;inset:0;background:#05070a;color:#f2f4f7;z-index:9999;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:opacity .65s ease,visibility .65s ease}
+    #boot-screen.is-done{opacity:0;visibility:hidden;pointer-events:none}
+    #boot-screen::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 42%,rgba(61,169,255,.10),transparent 38%),linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:auto,42px 42px,42px 42px;mask-image:linear-gradient(to bottom,transparent,black 18%,black 82%,transparent)}
+    .boot-frame{position:relative;width:min(760px,calc(100% - 44px));padding:34px 34px 30px;border:1px solid rgba(61,169,255,.22);background:rgba(6,9,13,.82);box-shadow:0 0 90px rgba(61,169,255,.08),inset 0 0 50px rgba(255,255,255,.015);backdrop-filter:blur(12px)}
+    .boot-top{display:flex;justify-content:space-between;align-items:center;font:500 11px var(--mono);letter-spacing:.14em;color:#707a86;text-transform:uppercase}
+    .boot-live{display:flex;align-items:center;gap:8px;color:#3da9ff}.boot-live i{width:6px;height:6px;border-radius:50%;background:#3da9ff;box-shadow:0 0 14px #3da9ff}
+    .boot-title{margin:70px 0 10px;font:700 clamp(58px,10vw,112px)/.86 var(--display);letter-spacing:-.07em;text-transform:uppercase}
+    .boot-title span{color:#3da9ff}
+    .boot-sub{margin:0 0 42px;font:500 13px var(--mono);color:#7f8791;letter-spacing:.04em}
+    .boot-console{border-top:1px solid rgba(255,255,255,.10);border-bottom:1px solid rgba(255,255,255,.10);padding:16px 0;font:500 12px var(--mono);color:#a5adb8}
+    .boot-console b{color:#3da9ff;font-weight:500}.boot-console .line{display:flex;gap:10px;margin:6px 0}.boot-console .ok{margin-left:auto;color:#59636f}
+    .boot-progress{height:2px;margin-top:28px;background:rgba(255,255,255,.08);overflow:hidden}.boot-progress span{display:block;width:0;height:100%;background:#3da9ff;box-shadow:0 0 18px rgba(61,169,255,.8);animation:bootFill 1.55s cubic-bezier(.22,1,.36,1) forwards}
+    .boot-footer{display:flex;justify-content:space-between;margin-top:12px;font:500 10px var(--mono);letter-spacing:.08em;color:#505966;text-transform:uppercase}.boot-footer strong{color:#dce2e8;font-weight:500}
+    @keyframes bootFill{to{width:100%}}
+    @media(max-width:650px){.boot-frame{padding:24px 20px}.boot-title{margin-top:52px}.boot-console{font-size:10px}.boot-footer{font-size:8px}}
+  `;
+  document.head.appendChild(style);
+
+  const boot=document.createElement('div');
+  boot.id='boot-screen';
+  boot.innerHTML=`<div class="boot-frame"><div class="boot-top"><span>BARATAM Sriram // PORTFOLIO</span><span class="boot-live"><i></i> SYSTEM ONLINE</span></div><h1 class="boot-title">BOOT<span>.</span></h1><p class="boot-sub">AI/ML ENGINEERING · SOFTWARE · FULL STACK · DATA</p><div class="boot-console"><div class="line"><b>01</b><span>initializing interface</span><span class="ok">done</span></div><div class="line"><b>02</b><span>loading project systems</span><span class="ok">done</span></div><div class="line"><b>03</b><span>connecting ideas → execution</span><span class="ok">ready</span></div></div><div class="boot-progress"><span></span></div><div class="boot-footer"><span>status <strong>ready to build</strong></span><span>v2026.09</span></div></div>`;
+  document.body.appendChild(boot);
+  const finish=()=>setTimeout(()=>boot.classList.add('is-done'),1750);
+  if(document.readyState==='complete') finish(); else window.addEventListener('load',finish,{once:true});
 })();
