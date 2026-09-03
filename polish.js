@@ -112,10 +112,60 @@
     #learning .journey-row:hover p{color:#b8c0ca!important;transform:translateX(5px)!important}
     #learning .journey-row:hover>b{color:#3da9ff!important;transform:translateX(-4px)!important}
 
+    /* CONTACT — recruiter-friendly form with the same blue/black identity */
+    #contact.contact{
+      position:relative!important;
+      display:block!important;
+      padding-top:95px!important;
+      padding-bottom:120px!important;
+      overflow:hidden!important;
+    }
+    #contact.contact::before{
+      content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,#3da9ff,rgba(61,169,255,.12),transparent);
+      box-shadow:0 0 22px rgba(61,169,255,.35);pointer-events:none;
+    }
+    .contact-intro{max-width:760px!important;position:relative!important;z-index:2!important}
+    #contact .terminal-status{margin-bottom:24px!important}
+    #contact h2{font-size:clamp(58px,7vw,96px)!important;margin:0 0 24px!important}
+    #contact h2 em{display:inline-block!important;transition:transform .45s cubic-bezier(.22,1,.36,1),text-shadow .45s ease!important}
+    #contact:hover h2 em{transform:translateX(7px)!important;text-shadow:0 0 40px rgba(61,169,255,.16)!important}
+    .contact-sub{max-width:640px!important;color:#8f8f96!important;font-size:15px!important;line-height:1.8!important;margin:0!important}
+    .contact-form-wrap{margin-top:68px!important;position:relative!important}
+    .contact-form-wrap::before{content:"CONTACT.REQUEST";position:absolute;right:0;top:-35px;color:#34363b;font:500 9px var(--mono);letter-spacing:.14em}
+    .contact-form{display:grid!important;grid-template-columns:1fr 1fr!important;gap:28px 24px!important}
+    .contact-field{position:relative!important;display:flex!important;flex-direction:column!important;gap:10px!important}
+    .contact-field.full{grid-column:1/-1!important}
+    .contact-field label{font:500 11px var(--mono)!important;letter-spacing:.13em!important;color:#dfe3e8!important;text-transform:uppercase!important}
+    .contact-field label::before{content:"// "!important;color:#3da9ff!important}
+    .contact-field input,.contact-field textarea{
+      width:100%!important;border:1px solid #292c31!important;border-radius:0!important;background:#080a0d!important;color:#f4f5f7!important;
+      font:500 15px var(--mono)!important;outline:none!important;padding:19px 18px!important;box-shadow:inset 0 0 0 1px transparent!important;
+      transition:border-color .25s ease,box-shadow .25s ease,background .25s ease,transform .25s ease!important;
+    }
+    .contact-field input{height:62px!important}
+    .contact-field textarea{min-height:190px!important;resize:vertical!important}
+    .contact-field input::placeholder,.contact-field textarea::placeholder{color:#555b63!important}
+    .contact-field input:focus,.contact-field textarea:focus{border-color:#3da9ff!important;background:#090c10!important;box-shadow:0 0 0 1px rgba(61,169,255,.18),0 0 35px rgba(61,169,255,.07)!important;transform:translateY(-1px)!important}
+    .contact-submit{
+      grid-column:1/-1!important;display:flex!important;align-items:center!important;justify-content:space-between!important;width:100%!important;
+      border:1px solid #3da9ff!important;background:#3da9ff!important;color:#050505!important;border-radius:0!important;padding:22px 24px!important;
+      font:700 12px var(--mono)!important;letter-spacing:.12em!important;text-transform:uppercase!important;cursor:pointer!important;
+      transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s ease,background .25s ease!important;
+    }
+    .contact-submit span:last-child{font-size:20px!important;line-height:1!important;transition:transform .3s ease!important}
+    .contact-submit:hover{transform:translateY(-3px)!important;box-shadow:0 15px 45px rgba(61,169,255,.18)!important;background:#67baff!important}
+    .contact-submit:hover span:last-child{transform:translate(5px,-4px)!important}
+    .contact-direct{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:20px!important;margin-top:28px!important;padding-top:22px!important;border-top:1px solid #202227!important}
+    .contact-direct span{font:500 10px var(--mono)!important;color:#555b63!important;letter-spacing:.08em!important;text-transform:uppercase!important}
+    .contact-direct a{font:500 13px var(--mono)!important;color:#dfe3e8!important;text-decoration:none!important;transition:color .2s ease!important}
+    .contact-direct a:hover{color:#3da9ff!important}
+    .contact-status{min-height:18px!important;margin:12px 0 0!important;font:500 10px var(--mono)!important;color:#67e8a5!important;letter-spacing:.04em!important}
+
     @media(max-width:900px){
       #capabilities .showcase-rows .showcase-row{height:126px!important;min-height:126px!important;grid-template-columns:72px minmax(0,1fr) 22px!important;padding-right:16px!important}
       #capabilities .showcase-rows .showcase-row strong{font-size:clamp(44px,8vw,66px)!important}
       #capabilities .showcase-rows .showcase-row small{font-size:clamp(17px,2.8vw,27px)!important}
+      #contact.contact{padding-top:75px!important}
     }
     @media(max-width:650px){
       #capabilities .showcase-rows .showcase-row{height:108px!important;min-height:108px!important;grid-template-columns:48px minmax(0,1fr) 18px!important;padding-right:8px!important}
@@ -123,6 +173,13 @@
       #capabilities .showcase-rows .showcase-row small{font-size:16px!important;white-space:normal!important;line-height:1.15!important}
       #capabilities .showcase-rows .showcase-row i{font-size:15px!important}
       #learning .journey-row:hover{transform:translateX(3px)!important}
+      .contact-form{grid-template-columns:1fr!important;gap:24px!important}
+      .contact-field.full,.contact-submit{grid-column:auto!important}
+      .contact-form-wrap{margin-top:48px!important}
+      .contact-form-wrap::before{display:none!important}
+      .contact-submit{padding:19px 18px!important}
+      .contact-direct{align-items:flex-start!important;flex-direction:column!important}
+      #contact h2{font-size:54px!important}
     }
   `;
   document.head.appendChild(style);
@@ -132,4 +189,54 @@
     row.addEventListener('pointerenter', () => row.classList.add('is-hovered'));
     row.addEventListener('pointerleave', () => row.classList.remove('is-hovered'));
   });
+
+  // Replace the simple contact links with a real recruiter-friendly contact form.
+  const contact = document.querySelector('#contact.contact');
+  if (contact && !contact.querySelector('.contact-form')) {
+    contact.innerHTML = `
+      <div class="contact-intro">
+        <div class="terminal-status"><span class="dot"></span> OPEN TO OPPORTUNITIES</div>
+        <h2>Let's build<br><em>something great.</em></h2>
+        <p class="contact-sub">Have an internship, software role, AI/ML opportunity, project or collaboration in mind? Send a message and I'll get back to you.</p>
+      </div>
+      <div class="contact-form-wrap">
+        <form class="contact-form" id="contactForm">
+          <div class="contact-field">
+            <label for="contactName">Your Name</label>
+            <input id="contactName" name="name" type="text" autocomplete="name" placeholder="Your name" required>
+          </div>
+          <div class="contact-field">
+            <label for="contactEmail">Email Address</label>
+            <input id="contactEmail" name="email" type="email" autocomplete="email" placeholder="you@company.com" required>
+          </div>
+          <div class="contact-field full">
+            <label for="contactCompany">Company / Organization</label>
+            <input id="contactCompany" name="company" type="text" autocomplete="organization" placeholder="Company, startup, university...">
+          </div>
+          <div class="contact-field full">
+            <label for="contactMessage">Message</label>
+            <textarea id="contactMessage" name="message" placeholder="Tell me about the role, project or opportunity..." required></textarea>
+          </div>
+          <button class="contact-submit" type="submit"><span>→ &nbsp; SEND MESSAGE</span><span>↗</span></button>
+          <p class="contact-status" id="contactStatus" aria-live="polite"></p>
+        </form>
+        <div class="contact-direct"><span>DIRECT CHANNEL</span><a href="mailto:sriram223399@gmail.com">sriram223399@gmail.com ↗</a></div>
+      </div>
+    `;
+
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('contactStatus');
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const name = String(data.get('name') || '').trim();
+      const email = String(data.get('email') || '').trim();
+      const company = String(data.get('company') || '').trim();
+      const message = String(data.get('message') || '').trim();
+      const subject = company ? `Portfolio enquiry — ${company}` : `Portfolio enquiry — ${name}`;
+      const body = `Name: ${name}\nEmail: ${email}\nCompany / Organization: ${company || 'Not provided'}\n\nMessage:\n${message}`;
+      window.location.href = `mailto:sriram223399@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      if (status) status.textContent = 'OPENING YOUR EMAIL CLIENT…';
+    });
+  }
 })();
