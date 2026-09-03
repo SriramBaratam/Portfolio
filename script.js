@@ -89,3 +89,59 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
     terminal.prepend(photo);
   }
 })();
+
+/* Showcase rows: details appear only while the cursor is over a row. */
+(() => {
+  const style = document.createElement('style');
+  style.textContent = `
+    .showcase-rows .showcase-row{
+      position:relative;
+      min-height:130px;
+      overflow:hidden;
+      transition:background .35s ease,color .35s ease,transform .35s ease,padding .35s ease;
+    }
+    .showcase-rows .showcase-row small,
+    .showcase-rows .showcase-row i{
+      opacity:0;
+      visibility:hidden;
+      transform:translateX(18px);
+      transition:opacity .25s ease,visibility .25s ease,transform .35s ease,color .35s ease;
+    }
+    .showcase-rows .showcase-row strong{
+      transition:color .35s ease,transform .35s ease;
+    }
+    .showcase-rows .showcase-row:hover,
+    .showcase-rows .showcase-row:focus-visible{
+      background:#3da9ff;
+      color:#050505;
+      border-color:#3da9ff;
+      padding-left:18px;
+      padding-right:18px;
+    }
+    .showcase-rows .showcase-row:hover strong,
+    .showcase-rows .showcase-row:focus-visible strong,
+    .showcase-rows .showcase-row:hover small,
+    .showcase-rows .showcase-row:focus-visible small,
+    .showcase-rows .showcase-row:hover i,
+    .showcase-rows .showcase-row:focus-visible i{
+      color:#050505;
+    }
+    .showcase-rows .showcase-row:hover small,
+    .showcase-rows .showcase-row:focus-visible small,
+    .showcase-rows .showcase-row:hover i,
+    .showcase-rows .showcase-row:focus-visible i{
+      opacity:1;
+      visibility:visible;
+      transform:translateX(0);
+    }
+    .showcase-rows .showcase-row:hover strong,
+    .showcase-rows .showcase-row:focus-visible strong{
+      transform:translateX(4px);
+    }
+    @media(max-width:650px){
+      .showcase-rows .showcase-row{min-height:105px}
+      .showcase-rows .showcase-row small{font-size:9px}
+    }
+  `;
+  document.head.appendChild(style);
+})();
