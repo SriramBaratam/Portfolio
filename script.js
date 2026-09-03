@@ -16,7 +16,6 @@ const certificates = [
   ['15','Technology Job Simulation','Deloitte / Forage','WhatsApp Image 2026-09-02 at 00.31.51.jpeg']
 ];
 
-/* Certificate viewer */
 const grid = document.getElementById('certGrid');
 if (grid) {
   certificates.forEach(([n,title,issuer,file]) => {
@@ -40,7 +39,6 @@ function openCertificate(title, issuer, file) {
   document.body.appendChild(modal);
 }
 
-/* Scroll progress */
 const progress = document.getElementById('progress');
 const updateProgress = () => {
   if (!progress) return;
@@ -50,7 +48,6 @@ const updateProgress = () => {
 window.addEventListener('scroll', updateProgress, { passive: true });
 updateProgress();
 
-/* Reveal animations */
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -65,7 +62,6 @@ document.querySelectorAll('.section,.metrics,.project-card,.stack-line,.journey-
   observer.observe(el);
 });
 
-/* Smooth internal navigation */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', event => {
     const target = document.querySelector(a.getAttribute('href'));
@@ -96,11 +92,10 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   if (brand) brand.innerHTML = '<span class="nav-avatar" aria-hidden="true"></span><span class="nav-name">Baratam Sriram</span>';
 })();
 
-/* ABOUT — interactive system dossier. This is intentionally the visual shock section. */
+/* ABOUT — interactive system dossier */
 (() => {
   const about = document.querySelector('#about');
   if (!about) return;
-
   const style = document.createElement('style');
   style.textContent = `
     #about{position:relative!important;isolation:isolate!important;overflow:hidden!important;padding-top:150px!important;padding-bottom:170px!important;background:#050607!important}
@@ -117,7 +112,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     .about-hud{position:absolute;right:0;bottom:18px;width:290px;padding:15px 16px;border:1px solid rgba(61,169,255,.2);background:rgba(5,8,11,.72);backdrop-filter:blur(10px);box-shadow:0 0 50px rgba(61,169,255,.06);font:500 9px/1.8 var(--mono);color:#69727c;z-index:6}
     .about-hud b{color:#3da9ff;font-weight:500}.about-hud .hud-line{display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);padding:3px 0}.about-hud .hud-line:last-child{border:0}.hud-live{display:inline-flex;align-items:center;gap:6px;color:#dce4ec}.hud-live i{width:6px;height:6px;border-radius:50%;background:#3da9ff;box-shadow:0 0 12px #3da9ff;animation:hudPulse 1.5s ease-in-out infinite}
     .about-scan{position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,#3da9ff,transparent);box-shadow:0 0 18px rgba(61,169,255,.9);z-index:7;opacity:.7;animation:aboutScan 5s ease-in-out infinite;pointer-events:none}
-    .about-orbit{position:absolute;width:420px;height:420px;border:1px dashed rgba(61,169,255,.15);border-radius:50%;right:-130px;top:250px;z-index:-1;animation:aboutSpin 18s linear infinite}
+    .about-orbit{position:absolute;width:420px;height:420px;border:1px dashed rgba(61,169,255,.15);border-radius:50%;right:-130px;top:250px;z-index:-1;animation:aboutOrbit 18s linear infinite}
     .about-orbit::before,.about-orbit::after{content:"";position:absolute;border-radius:50%;background:#3da9ff;box-shadow:0 0 18px #3da9ff}.about-orbit::before{width:5px;height:5px;left:12%;top:18%}.about-orbit::after{width:3px;height:3px;right:14%;bottom:16%}
     #about .about-grid{position:relative;z-index:5;margin-top:60px!important;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr)!important;gap:100px!important}
     #about .big-copy{font-size:clamp(28px,3vw,45px)!important;line-height:1.12!important;letter-spacing:-.045em!important;position:relative!important}
@@ -126,8 +121,9 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     #about .body-copy::before{content:"/ EXECUTION LOG";display:block;margin-bottom:22px;color:#3da9ff;font:500 9px var(--mono);letter-spacing:.15em}
     #about .body-copy p{transition:transform .45s cubic-bezier(.22,1,.36,1),color .3s ease!important}
     #about .body-copy p:hover{transform:translateX(8px)!important;color:#d9e0e7!important}
-    .about-word{display:inline-block;transition:transform .45s cubic-bezier(.22,1,.36,1),color .3s ease;text-shadow:0 0 0 transparent}.about-word:hover{transform:translateY(-7px) rotate(-1deg);color:#fff}
+    .about-word{display:inline-block;transition:transform .45s cubic-bezier(.22,1,.36,1),color .3s ease}.about-word:hover{transform:translateY(-7px) rotate(-1deg);color:#fff}
     @keyframes aboutSpin{to{transform:translateX(-50%) rotate(360deg)}}
+    @keyframes aboutOrbit{to{transform:rotate(360deg)}}
     @keyframes aboutScan{0%,100%{transform:translateY(0);opacity:0}15%{opacity:.7}50%{transform:translateY(520px);opacity:.35}85%{opacity:.7}}
     @keyframes hudPulse{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
     @media(max-width:900px){#about{padding-top:110px!important;padding-bottom:110px!important}#about .section-title-row{min-height:300px!important}#about .section-title-row h2{font-size:clamp(60px,11vw,100px)!important}.about-hud{position:relative;right:auto;bottom:auto;margin-top:28px;width:min(100%,320px)}#about .about-grid{gap:55px!important;grid-template-columns:1fr!important}.about-orbit{right:-220px;top:250px}}
@@ -143,7 +139,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   about.querySelector('.section-title-row')?.appendChild(hud);
 
   const title = about.querySelector('.section-title-row h2');
-  if (title) {
+  if (title && !title.querySelector('.about-word')) {
     title.innerHTML = title.innerHTML.replace('Engineer at heart,','<span class="about-word">Engineer</span> <span class="about-word">at</span> <span class="about-word">heart,</span>');
   }
 
@@ -161,8 +157,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     const r = about.getBoundingClientRect();
     const x = (e.clientX-r.left)/r.width;
     const y = (e.clientY-r.top)/r.height;
-    about.style.setProperty('--about-x', `${x*100}%`);
-    about.style.setProperty('--about-y', `${y*100}%`);
     about.style.setProperty('--about-rx', `${(y-.5)*-3}deg`);
     about.style.setProperty('--about-ry', `${(x-.5)*3}deg`);
   });
@@ -174,24 +168,16 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   document.head.appendChild(cursorStyle);
 })();
 
-/* Loading boot screen */
+/* Boot screen */
 (() => {
   const loader = document.createElement('div');
   loader.className = 'boot-loader';
   loader.innerHTML = `<div class="boot-inner"><div class="boot-top"><span>SRIRAM.OS</span><span>INITIALIZING</span></div><div class="boot-name">BARATAM<br><em>SRIRAM.</em></div><div class="boot-log"><span>01</span> loading interface modules...<br><span>02</span> mounting AI systems...<br><span>03</span> establishing connection...</div><div class="boot-bar"><i></i></div><div class="boot-percent">0%</div></div>`;
   const style = document.createElement('style');
-  style.textContent = `
-    .boot-loader{position:fixed;inset:0;background:#050607;color:#f4f5f7;z-index:99999;display:grid;place-items:center;font-family:var(--mono);transition:opacity .65s ease,visibility .65s ease}.boot-loader.done{opacity:0;visibility:hidden;pointer-events:none}.boot-inner{width:min(760px,calc(100% - 48px))}.boot-top{display:flex;justify-content:space-between;color:#68717b;font:500 10px var(--mono);letter-spacing:.12em;margin-bottom:34px}.boot-name{font:700 clamp(58px,11vw,130px)/.78 var(--display);letter-spacing:-.075em}.boot-name em{font-style:normal;color:#3da9ff}.boot-log{margin-top:40px;color:#69727c;font:500 10px/2 var(--mono)}.boot-log span{color:#3da9ff;margin-right:10px}.boot-bar{height:1px;background:#22272d;margin-top:26px;overflow:hidden}.boot-bar i{display:block;width:0;height:100%;background:#3da9ff;box-shadow:0 0 15px #3da9ff}.boot-percent{margin-top:10px;color:#3da9ff;font:500 9px var(--mono);text-align:right}@media(prefers-reduced-motion:reduce){.boot-loader{display:none}}
-  `;
+  style.textContent = `.boot-loader{position:fixed;inset:0;background:#050607;color:#f4f5f7;z-index:99999;display:grid;place-items:center;font-family:var(--mono);transition:opacity .65s ease,visibility .65s ease}.boot-loader.done{opacity:0;visibility:hidden;pointer-events:none}.boot-inner{width:min(760px,calc(100% - 48px))}.boot-top{display:flex;justify-content:space-between;color:#68717b;font:500 10px var(--mono);letter-spacing:.12em;margin-bottom:34px}.boot-name{font:700 clamp(58px,11vw,130px)/.78 var(--display);letter-spacing:-.075em}.boot-name em{font-style:normal;color:#3da9ff}.boot-log{margin-top:40px;color:#69727c;font:500 10px/2 var(--mono)}.boot-log span{color:#3da9ff;margin-right:10px}.boot-bar{height:1px;background:#22272d;margin-top:26px;overflow:hidden}.boot-bar i{display:block;width:0;height:100%;background:#3da9ff;box-shadow:0 0 15px #3da9ff}.boot-percent{margin-top:10px;color:#3da9ff;font:500 9px var(--mono);text-align:right}@media(prefers-reduced-motion:reduce){.boot-loader{display:none}}`;
   document.head.appendChild(style); document.body.prepend(loader);
   const bar = loader.querySelector('.boot-bar i'); const pct = loader.querySelector('.boot-percent');
   const start = performance.now();
   const run = now => { const p = Math.min(100,(now-start)/1500*100); bar.style.width=p+'%'; pct.textContent=Math.floor(p)+'%'; if(p<100) requestAnimationFrame(run); else setTimeout(()=>loader.classList.add('done'),220); };
   requestAnimationFrame(run);
-})();
-
-/* Load the visual polish layer after base behavior is ready. */
-(() => {
-  if (document.querySelector('script[data-polish]')) return;
-  const s = document.createElement('script'); s.src = 'polish.js'; s.dataset.polish = 'true'; document.body.appendChild(s);
 })();
